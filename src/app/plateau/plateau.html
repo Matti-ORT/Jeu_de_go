@@ -1,13 +1,23 @@
 <!-- Grille d'affichage 8x8 (intersections visibles) -->
 <div class="grille-affichage">
+	<!-- Boucle sur les lignes (8 lignes) -->
 	<div *ngFor="let row of [].constructor(8); let i = index" class="row">
-		<div *ngFor="let col of [].constructor(8); let j = index" class="intersection"></div>
+		<!-- Boucle sur les colonnes (8 colonnes) -->
+		<div *ngFor="let col of [].constructor(8); let j = index" class="intersection">
+			
+		</div>
 	</div>
 </div>
 
 <!-- Grille d'interaction 9x9 (cases cliquables et invisibles) -->
 <div class="grille-interaction">
+	<!-- Boucle sur les lignes (9 lignes) -->
 	<div *ngFor="let row of [].constructor(9); let i = index" class="row">
-		<div *ngFor="let col of [].constructor(9); let j = index" class="case" (click)="onCaseClick(i, j)"></div>
+		<!-- Boucle sur les colonnes (9 colonnes) -->
+		<div *ngFor="let col of [].constructor(9); let j = index" class="case" (click)="onCaseClick(i, j)">
+			<!-- Case cliquable, aucune visibilité -->
+			 <!-- Affiche un pion si présent sur la case -->
+			<span *ngIf="plateau[i][j]" class="pion" [ngClass]="plateau[i][j]"></span>
+		</div>
 	</div>
 </div>

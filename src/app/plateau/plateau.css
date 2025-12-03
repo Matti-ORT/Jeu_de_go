@@ -36,12 +36,6 @@ body, :host-context(body) {
   background: transparent;
   border: none;
   cursor: pointer;
-  opacity: 0;
-  transition: background 0.2s, opacity 0.2s;
-}
-.grille-interaction .case:hover {
-  background: rgba(34, 118, 226, 0.2);
-  opacity: 1;
 }
 
 /* ===================== Grille d'affichage 8x8 ===================== */
@@ -67,4 +61,28 @@ body, :host-context(body) {
 .grille-affichage .intersection-hover {
   background: #ffb6b6;
   transition: background 0.2s;
+}
+
+/* Style pour les pions */
+.pion {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  z-index: 3;
+}
+.pion.noir {
+  background: #222;
+}
+.pion.blanc {
+  background: #fff;
+  border: 2px solid #ccc;
+}
+
+/* Pour positionner le pion au centre de l'intersection */
+.grille-interaction .case {
+  position: relative;
 }

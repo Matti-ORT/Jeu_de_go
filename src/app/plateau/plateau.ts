@@ -8,8 +8,23 @@ import { CommonModule } from '@angular/common';
   styleUrl: './plateau.css',
 })
 export class Plateau {
+  // Plateau de jeu 8x8, chaque case peut être 'noir', 'blanc' ou null (vide)
+  plateau: ('noir' | 'blanc' | null)[][] = Array.from({ length: 9 }, () => Array(9).fill(null));
+  
+  // Le joueur courant, commence par 'noir'
+  joueur: 'noir' | 'blanc' = 'noir';
+
+  // Gère le clic sur une case du plateau
   onCaseClick(i: number, j: number) {
-    // Action à effectuer lors d'un clic sur une case (à compléter selon la logique du jeu)
-    console.log('Case cliquée :', i, j);
+  
+    // Vérifie si la case est vide avant de jouer
+    if (this.plateau[i][j] === null) {
+      
+      // affecte le joueur au case 
+      this.plateau[i][j] = this.joueur;
+      this.joueur = this.joueur === 'noir' ? 'blanc' : 'noir'; // Change de joueur
+    }
+    
+    console.log(i,j)
   }
 }
