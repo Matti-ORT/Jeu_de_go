@@ -1,1 +1,13 @@
-<p>plateau works!</p>
+<!-- Grille d'affichage 8x8 (intersections visibles) -->
+<div class="grille-affichage">
+	<div *ngFor="let row of [].constructor(8); let i = index" class="row">
+		<div *ngFor="let col of [].constructor(8); let j = index" class="intersection"></div>
+	</div>
+</div>
+
+<!-- Grille d'interaction 9x9 (cases cliquables et invisibles) -->
+<div class="grille-interaction">
+	<div *ngFor="let row of [].constructor(9); let i = index" class="row">
+		<div *ngFor="let col of [].constructor(9); let j = index" class="case" (click)="onCaseClick(i, j)"></div>
+	</div>
+</div>
