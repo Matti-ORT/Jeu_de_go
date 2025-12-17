@@ -9,12 +9,21 @@
 	</div>
 </div>
 
+<div class="scores">
+  <div class="score noir">Noir: {{ scoreNoir() }}</div>
+  <div class="score blanc">Blanc: {{ scoreBlanc() }}</div>
+  <div class="courant">Joueur: {{ joueur }}</div>
+</div>
+
+
+
 <!-- Grille d'interaction 9x9 (cases cliquables et invisibles) -->
 <div class="grille-interaction">
 	<!-- Boucle sur les lignes (9 lignes) -->
 	<div *ngFor="let row of [].constructor(9); let i = index" class="row">
 		<!-- Boucle sur les colonnes (9 colonnes) -->
-		<div *ngFor="let col of [].constructor(9); let j = index" class="case" (click)="onCaseClick(i, j)">
+		<div *ngFor="let col of [].constructor(9); let j = index" class="case" (click)="onCaseClick(i, j)"
+			(contextmenu)="onCaseRightClick(i, j,$event)">
 			<!-- Case cliquable, aucune visibilité -->
 			 <!-- Affiche un pion si présent sur la case -->
 			<span *ngIf="plateau[i][j]" class="pion" [ngClass]="plateau[i][j]"></span>

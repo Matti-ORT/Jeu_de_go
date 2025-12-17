@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -14,6 +14,10 @@ export class Plateau {
   // Le joueur courant, commence par 'noir'
   joueur: 'noir' | 'blanc' = 'noir';
 
+
+  scoreNoir = signal(0);
+  scoreBlanc = signal(0);
+
   // Gère le clic sur une case du plateau
   onCaseClick(i: number, j: number) {
   
@@ -22,9 +26,22 @@ export class Plateau {
       
       // affecte le joueur au case 
       this.plateau[i][j] = this.joueur;
-      this.joueur = this.joueur === 'noir' ? 'blanc' : 'noir'; // Change de joueur
+      if (this.joueur === 'noir') {
+          this.joueur = 'blanc';
+        } else {
+          this.joueur = 'noir';
+        }
     }
-    
-    console.log(i,j)
   }
+
+    onCaseRightClick(i: number, j: number, event: MouseEvent) {
+      event.preventDefault();
+      const occupant = this.plateau[i][j];
+      // si pierre adverse -> retire et augmente le score du joueur courant
+      if (occupant !== null  ) {
+        this.plateau[i][j] = null;
+        if (this.joueur === 'noir') this.scoreNoir.update(s => s + 1);
+        else this.scoreBlanc.update(s => s + 1);
+      }
+    }
 }

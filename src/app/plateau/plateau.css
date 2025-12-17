@@ -1,10 +1,6 @@
 /* ===================== Centrage général ===================== */
 body, :host-context(body) {
-  display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: #f8f8f8;
 }
 
 /* ===================== Plateau principal ===================== */
@@ -23,9 +19,7 @@ body, :host-context(body) {
   left: 0;
   width: 360px;
   height: 360px;
-  z-index: 2;
-  border: 2px solid #2276e2;
-  box-sizing: border-box;
+  border: 2px solid #000000;
 }
 .grille-interaction .row {
   display: flex;
@@ -45,7 +39,6 @@ body, :host-context(body) {
   left: 20px;
   width: 320px;
   height: 320px;
-  z-index: 1;
   pointer-events: none; /* Ne bloque pas les clics */
 }
 .grille-affichage .row {
@@ -54,14 +47,11 @@ body, :host-context(body) {
 .grille-affichage .intersection {
   width: 40px;
   height: 40px;
-  border: 1px dashed #e22;
+  border: 1px solid rgb(158, 95, 0);
   box-sizing: border-box;
   transition: background 0.2s, opacity 0.2s;
 }
-.grille-affichage .intersection-hover {
-  background: #ffb6b6;
-  transition: background 0.2s;
-}
+
 
 /* Style pour les pions */
 .pion {
@@ -86,3 +76,14 @@ body, :host-context(body) {
 .grille-interaction .case {
   position: relative;
 }
+
+
+.scores {
+  display:flex;
+  gap: 20px;
+  justify-content: center;
+  font-weight: bold;
+}
+.score.noir { color: #111; }
+.score.blanc { color: #444; }
+.courant { color: #2276e2; }
