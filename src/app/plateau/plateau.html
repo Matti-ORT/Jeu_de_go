@@ -1,32 +1,38 @@
-<!-- Grille d'affichage 8x8 (intersections visibles) -->
-<div class="grille-affichage">
-	<!-- Boucle sur les lignes (8 lignes) -->
-	<div *ngFor="let row of [].constructor(8); let i = index" class="row">
-		<!-- Boucle sur les colonnes (8 colonnes) -->
-		<div *ngFor="let col of [].constructor(8); let j = index" class="intersection">
-			
+
+<div class="board">
+	<!-- Grille d'affichage 8x8 (intersections visibles) -->
+	<div class="grille-affichage">
+		<!-- Boucle sur les lignes (8 lignes) -->
+		<div *ngFor="let row of [].constructor(8); let i = index" class="row">
+			<!-- Boucle sur les colonnes (8 colonnes) -->
+			<div *ngFor="let col of [].constructor(8); let j = index" class="intersection"></div>
+		</div>
+	</div>
+
+	<!-- Grille d'interaction 9x9 (cases cliquables et invisibles) -->
+	<div class="grille-interaction">
+		<!-- Boucle sur les lignes (9 lignes) -->
+		<div *ngFor="let row of [].constructor(9); let i = index" class="row">
+			<!-- Boucle sur les colonnes (9 colonnes) -->
+			<div *ngFor="let col of [].constructor(9); let j = index" class="case" (click)="onCaseClick(i, j)"
+					 (contextmenu)="onCaseRightClick(i, j,$event)">
+				<!-- Case cliquable, aucune visibilité -->
+				<!-- Affiche un pion si présent sur la case -->
+				<span *ngIf="plateau[i][j]" class="pion" [ngClass]="plateau[i][j]"></span>
+			</div>
 		</div>
 	</div>
 </div>
 
-<div class="scores">
-  <div class="score noir">Noir: {{ scoreNoir() }}</div>
-  <div class="score blanc">Blanc: {{ scoreBlanc() }}</div>
-  <div class="courant">Joueur: {{ joueur }}</div>
-</div>
-
-
-
-<!-- Grille d'interaction 9x9 (cases cliquables et invisibles) -->
-<div class="grille-interaction">
-	<!-- Boucle sur les lignes (9 lignes) -->
-	<div *ngFor="let row of [].constructor(9); let i = index" class="row">
-		<!-- Boucle sur les colonnes (9 colonnes) -->
-		<div *ngFor="let col of [].constructor(9); let j = index" class="case" (click)="onCaseClick(i, j)"
-			(contextmenu)="onCaseRightClick(i, j,$event)">
-			<!-- Case cliquable, aucune visibilité -->
-			 <!-- Affiche un pion si présent sur la case -->
-			<span *ngIf="plateau[i][j]" class="pion" [ngClass]="plateau[i][j]"></span>
-		</div>
+<!-- Controls panel (scores, joueur, bouton Passer) -->
+<div class="controls">
+	<div class="scores">
+		<div class="score noir">Noir: {{ scoreNoir() }}</div>
+		<div class="score blanc">Blanc: {{ scoreBlanc() }}</div>
+		<div class="courant">Joueur: {{ joueur }}</div>
 	</div>
+
+	<button class="btn-passer" (click)="onPass()" [disabled]="partieTerminee">Passer</button>
+
+	<div *ngIf="partieTerminee" class="termine">Partie terminée</div>
 </div>

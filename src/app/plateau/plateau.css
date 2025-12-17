@@ -5,12 +5,35 @@ body, :host-context(body) {
 
 /* ===================== Plateau principal ===================== */
 :host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  min-height: 100vh;
+  padding: 20px;
+  background: #f8f8f8;
+}
+
+/* Conteneur réel du plateau (pour conserver les dimensions) */
+.board {
   position: relative;
-  display: block;
   width: 360px;
   height: 360px;
-  margin: auto;
 }
+
+/* Panel de contrôle à droite du plateau */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+.btn-passer {
+  padding: 6px 10px;
+  cursor: pointer;
+}
+.btn-passer[disabled] { opacity: 0.6; cursor: default; }
+.termine { color: #c33; font-weight: bold; }
 
 /* ===================== Grille d'interaction 9x9 ===================== */
 .grille-interaction {
